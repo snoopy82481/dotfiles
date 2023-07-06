@@ -24,18 +24,9 @@ fish_add_path "{{ .chezmoi.homeDir }}/.cargo/bin"
 fish_add_path "{{ .chezmoi.homeDir }}/.krew/bin"
 fish_add_path "{{ .chezmoi.homeDir }}/.go/bin"
 
-{{- if (eq .chezmoi.os "darwin") }}
-fish_add_path "/opt/homebrew/opt/curl/bin"
-fish_add_path "/opt/homebrew/opt/gettext/bin"
-fish_add_path "/opt/homebrew/opt/libiconv/bin"
-fish_add_path "/opt/homebrew/opt/findutils/libexec/gnubin"
-fish_add_path "/opt/homebrew/opt/coreutils/libexec/gnubin"
-fish_add_path "/opt/homebrew/opt/grep/libexec/gnubin"
-{{- end }}
-
-{{- if lookPath "/opt/homebrew/bin/brew" }}
+{{- if lookPath "/home/linuxbrew/.linuxbrew/bin/brew" }}
 if status --is-interactive
-    eval (/opt/homebrew/bin/brew shellenv)
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 {{- end }}
 
