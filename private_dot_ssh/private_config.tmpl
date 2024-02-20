@@ -6,7 +6,7 @@ Host *
   PKCS11Provider /usr/lib64/libykcs11.so
 {{- else }}
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/gh_ssh_key.pub
+  IdentityFile ~/.ssh/gh_ssh_key
 {{- end }}
 {{- if (eq .chezmoi.os "darwin") }}
   IgnoreUnknown UseKeychain

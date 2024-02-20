@@ -1,7 +1,11 @@
 [user]
   name = Stephen Beale
   email = stephen.r.beale@gmail.com
+{{- if (eq .chezmoi.os "darwin") }}
+  signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH4nidcyPnUfRDT6cytDno70HJwmfYraiEJNyL1HhJS
+{{- else }}
   signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGld29CUwqAQkJICFRYRNu+olt05Xz7HIbcupAcisRC3
+{{- end }}
 [gpg]
   format = ssh
 [format]
