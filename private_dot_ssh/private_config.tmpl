@@ -1,5 +1,9 @@
 Host *
   AddKeysToAgent yes
+  Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
+  PasswordAuthentication no
+  MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-sha2-256
+  ConnectTimeout 20
   IdentityFile ~/.ssh/gh_ssh_key
   IdentityFile ~/.ssh/id_ed25519
 {{- if (eq .chezmoi.os "darwin") }}
@@ -10,6 +14,7 @@ Host *
 Host devbox
   HostName devbox
   User stephen
+  IdentityFile ~/.ssh/id_ed25519
 Host cisco_switch
   HostName 192.168.10.254
   User snoopy82481
@@ -18,6 +23,7 @@ Host cisco_switch
   IdentityFile ~/.ssh/id_rsa
   KexAlgorithms diffie-hellman-group-exchange-sha1
   KexAlgorithms diffie-hellman-group14-sha1
+  StrictHostKeyChecking no
 Host 192.168.*.*
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
