@@ -1,0 +1,27 @@
+packages:
+  darwin:
+    taps:
+      - 'homebrew/cask-fonts'
+      - 'FelixKratz/formulae'
+      - 'go-task/tap'
+    brews:
+      - 'fish'
+      - 'stow'
+      - 'fzf'
+      - 'bat'
+      - 'zoxide'
+      - 'prettier'
+      - 'go-task/tap/go-task'
+      - 'git'
+      - 'lazygit'
+      - 'tmux'
+      - 'starship'
+      - 'tree-sitter'
+      - 'tree'
+    casks:
+      - 'raycast'
+      - 'wezterm'
+      - 'aerospace'
+      - 'font-hack-nerd-font'
+      - 'font-jetbrains-mono-nerd-font'
+      - 'font-sf-pro'
