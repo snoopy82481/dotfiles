@@ -1,7 +1,6 @@
 packages:
   darwin:
     taps:
-      - 'homebrew/cask-fonts'
       - 'FelixKratz/formulae'
       - 'go-task/tap'
     brews:
@@ -18,6 +17,8 @@ packages:
       - 'starship'
       - 'tree-sitter'
       - 'tree'
+      - 'nvim'
+      - 'make'
     casks:
       - 'raycast'
       - 'wezterm'
