@@ -5,7 +5,6 @@ packages:
       - 'go-task/tap'
     brews:
       - 'fish'
-      - 'stow'
       - 'fzf'
       - 'bat'
       - 'zoxide'
