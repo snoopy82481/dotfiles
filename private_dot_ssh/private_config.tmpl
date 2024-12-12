@@ -1,3 +1,4 @@
+{{ if (and (eq .chezmoi.os "darwin") (ne .personal "True")) }}
 LogLevel ERROR
 
 Host *
@@ -42,3 +43,4 @@ Host 172.16.*.*
 Host 10.*.*.*
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
+  {{- end }}
