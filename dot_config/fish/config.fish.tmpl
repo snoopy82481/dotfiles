@@ -30,7 +30,7 @@ fish_add_path "{{ .chezmoi.homeDir }}/.krew/bin"
 fish_add_path "{{ .chezmoi.homeDir }}/.go/bin"
 
 {{- if lookPath "/opt/homebrew/bin/brew" }}
-fish_add_path /opt/homebrew/opt/ruby/bin
+fish_add_path "/opt/homebrew/opt/ruby/bin"
 set -gx LDFLAGS "-L/opt/homebrew/opt/ruby/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/ruby/include"
 if status --is-interactive

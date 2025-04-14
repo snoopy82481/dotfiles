@@ -34,6 +34,10 @@ Host cisco_switch
   KexAlgorithms diffie-hellman-group-exchange-sha1
   KexAlgorithms diffie-hellman-group14-sha1
   StrictHostKeyChecking no
+Host pfsense
+  HostName 192.168.0.1
+  IdentityFile ~/.ssh/id_ed25519
+  User snoopy82481
 Host 192.168.*.*
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
