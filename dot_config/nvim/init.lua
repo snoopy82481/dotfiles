@@ -1,4 +1,6 @@
-require 'core' -- Load general options
+vim.opt.termguicolors = true
+
+require("core") -- Load general options
 
 -- -- Install package manager
 -- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -63,3 +65,4 @@ require 'core' -- Load general options
 
 -- -- The line beneath this is called `modeline`. See `:help modeline`
 -- -- vim: ts=2 sts=2 sw=2 et
+
