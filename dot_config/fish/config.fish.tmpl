@@ -33,6 +33,7 @@ fish_add_path "{{ .chezmoi.homeDir }}/.go/bin"
 fish_add_path "/opt/homebrew/opt/ruby/bin"
 set -gx LDFLAGS "-L/opt/homebrew/opt/ruby/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/ruby/include"
+
 if status --is-interactive
     eval (/opt/homebrew/bin/brew shellenv)
 end
@@ -62,4 +63,8 @@ end
 
 if type -q fzf
     fzf --fish | source
+end
+
+if type -q kubectl
+    kubectl completion fish | source
 end
