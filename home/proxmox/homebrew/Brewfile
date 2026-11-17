@@ -1,0 +1,15 @@
+instance_eval File.read(File.expand_path("~/.dotfiles/home/homebrew/common.Brewfile"))
+
+tap "dopplerhq/doppler", "https://github.com/DopplerHQ/homebrew-doppler.git", trusted: true
+brew "atuin"
+brew "doggo"
+brew "gcc@11"
+brew "gh"
+brew "lsd"
+brew "python@3.15"
+brew "topgrade"
+brew "tree"
+brew "unzip"
+brew "viddy"
+cask "dopplerhq/cli/doppler"
+cask "font-meslo-lg-nerd-font"

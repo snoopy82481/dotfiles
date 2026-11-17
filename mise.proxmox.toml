@@ -1,0 +1,50 @@
+[vars]
+machine = "proxmox"
+
+[dotfiles]
+"~/.config/mise/mise.proxmox.toml" = { source = "~/.dotfiles/mise.proxmox.toml", mode = "symlink" }
+"~/.config/homebrew" = { source = "~/.dotfiles/home/proxmox/homebrew", mode = "symlink" }
+"~/.config/fish/conf.d/10-homebrew.fish" = { source = "~/.dotfiles/home/proxmox/10-homebrew.fish", mode = "symlink" }
+
+# CLI tools come from Homebrew (see home/proxmox/homebrew/Brewfile). mise stays a
+# standalone ~/.local/bin/mise install, so it never depends on the brew prefix
+# it provisions.
+#
+# rpm-ostree still owns what must live in the OS image: fish (login shell, must
+# be in /etc/shells), the container and qemu stack, hardware utilities,
+# systemd-networkd, glibc-langpack-en (the en_US.utf-8 locale the shells
+# export), 1password-cli (no linuxbrew formula), telnet (no linuxbrew bottle),
+# and the gcc/make/git toolchain Homebrew itself builds against.
+
+# No [tools] here on purpose. Homebrew covers every global tool, including the
+# ones that look macOS-only: casks whose sole artifact is a `binary` install
+# fine on linuxbrew (claude-code@latest, codex), and the Kagi CLI has a tap
+# formula with an on_linux block.
+#
+# node (which carries npm) and python come from Homebrew because enough global
+# tooling assumes they exist. Other language runtimes stay per-project, declared
+# in each project's own mise config, so mise stays a dotfiles manager here.
+
+# Runs after the dotfiles phase so the brewfile symlink exists on first run.
+# brew is resolved explicitly: the linuxbrew prefix is not on PATH until
+# 10-homebrew.fish has been laid down and a new shell started.
+[bootstrap.hooks.post-dotfiles]
+run = '''
+set -eu
+BREW="$(command -v brew || true)"
+for candidate in /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+    [ -n "$BREW" ] && break
+    [ -x "$candidate" ] && BREW="$candidate"
+done
+if [ -z "$BREW" ]; then
+    echo "brew not found - install Homebrew before bootstrapping this machine" >&2
+    exit 1
+fi
+eval "$("$BREW" shellenv sh)"
+# brew bundle does not order entry types against each other, so whatever an
+# entry's installer depends on has to exist beforehand: unzip for casks that
+# ship a .zip (Fedora IoT has none), and krew's plugin index, which a freshly
+# installed krew does not have, for the krew entries.
+command -v unzip >/dev/null 2>&1 || brew install unzip
+brew bundle install --no-upgrade --file="$HOME/.config/homebrew/Brewfile"
+'''

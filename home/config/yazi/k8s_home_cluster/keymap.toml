@@ -1,0 +1,14 @@
+[manager]
+keymap = [
+  # Disable delete
+  { on = ["d", "D"], run = "noop" },
+
+  # Disable rename
+  { on = ["r"], run = "noop" },
+
+  # Disable create
+  { on = ["a", "A", "o", "O"], run = "noop" },
+
+  # Disable cut/paste
+  { on = ["x", "p", "P"], run = "noop" },
+]

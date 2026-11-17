@@ -1,0 +1,33 @@
+#Theme config
+theme = Gruvbox Material Dark
+
+# Fonts
+font-family = MesloLGLDZ Nerd Font Mono
+font-size = 14
+font-thicken = true
+
+# macOS specific
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+# window-show-tab-bar is GTK-only, so a single tab still hides the bar here;
+# this at least keeps the tab strip in the titlebar instead of adding a row.
+macos-titlebar-style = tabs
+
+window-padding-balance = false
+window-padding-x = 10
+window-padding-y = 10,2
+
+# Application settings
+auto-update = download
+auto-update-channel = stable
+clipboard-trim-trailing-spaces = true
+shell-integration = detect
+
+# Window settings
+window-height = 55
+window-width = 317
+
+# Cursor settings
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor

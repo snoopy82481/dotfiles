@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  },
+  "theme": "dark",
+  "agentPushNotifEnabled": true,
+  "skipWorkflowUsageWarning": true,
+  "tui": "fullscreen",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
+}

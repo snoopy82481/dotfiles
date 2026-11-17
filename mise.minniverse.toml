@@ -1,0 +1,23 @@
+[vars]
+machine = "minniverse"
+
+[dotfiles]
+"~/.config/mise/mise.minniverse.toml" = { source = "~/.dotfiles/mise.minniverse.toml", mode = "symlink" }
+"~/.config/homebrew" = { source = "~/.dotfiles/home/minniverse/homebrew", mode = "symlink" }
+"~/.config/fish/conf.d/10-homebrew.fish" = { source = "~/.dotfiles/home/minniverse/10-homebrew.fish", mode = "symlink" }
+
+[bootstrap.hooks.post-dotfiles]
+run = '''''
+set -eu
+BREW="$(command -v brew || true)"
+for candidate in /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+    [ -n "$BREW" ] && break
+    [ -x "$candidate" ] && BREW="$candidate"
+done
+if [ -z "$BREW" ]; then
+    echo "brew not found - install Homebrew before bootstrapping this machine" >&2
+    exit 1
+fi
+eval "$("$BREW" shellenv sh)"
+brew bundle install --no-upgrade --file="$HOME/.config/homebrew/Brewfile"
+'''''

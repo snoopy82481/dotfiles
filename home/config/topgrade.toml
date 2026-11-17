@@ -1,0 +1,3 @@
+[misc]
+disable = ["gem", "helm", "ruby_gems", "chezmoi", "containers"]
+assume_yes = true

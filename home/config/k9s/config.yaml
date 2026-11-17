@@ -1,0 +1,35 @@
+k9s:
+  liveViewAutoRefresh: false
+  refreshRate: 2
+  maxConnRetry: 5
+  readOnly: false
+  noExitOnCtrlC: false
+  ui:
+    enableMouse: false
+    headless: false
+    logoless: false
+    crumbsless: false
+    noIcons: false
+    skin: gruvbox-material-dark-medium
+  shellPod:
+    image: busybox:1.38.0
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  skipLatestRevCheck: false
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: 300
+    textWrap: false
+    showTime: false
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+  screenDumpDir: /tmp/k9s-screens-stephen
+  disablePodCounting: false

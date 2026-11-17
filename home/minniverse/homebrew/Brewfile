@@ -1,0 +1,51 @@
+instance_eval File.read(File.expand_path("~/.dotfiles/home/homebrew/common.Brewfile"))
+
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Implementation of the DNS protocols
+brew "bind"
+# GNU binary tools for native development
+brew "binutils"
+# Mozilla CA certificate store
+brew "ca-certificates"
+# More intuitive version of du in rust
+brew "dust"
+# Command-line DNS Client for Humans
+brew "doggo"
+# Classic UNIX line editor
+brew "ed"
+# Modern, maintained replacement for ls
+brew "eza"
+# GNU compiler collection
+brew "gcc@11"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# C code prettifier
+brew "gnu-indent"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+#Improved top (interactive process viewer)
+brew "htop"
+# Cryptography and SSL/TLS Toolkit
+brew "openssl@4"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.15"
+# Terminal multiplexer
+brew "tmux"
+# Upgrade all the things
+brew "topgrade"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Modern watch command
+brew "viddy"
+# Compression and file packaging/archive utility
+brew "zip"
+# Fonts
+cask "font-fira-code-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-meslo-lg-nerd-font"
+cask "font-sf-mono"
+cask "font-sf-pro"

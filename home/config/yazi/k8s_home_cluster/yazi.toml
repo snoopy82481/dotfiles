@@ -1,0 +1,13 @@
+[manager]
+show_hidden = true
+show_symlink = true
+sort_by = "alphabetical"
+linemode = "none"
+scrolloff = 0
+cursor_style = "block"
+
+# Single-pane tree view
+ratio = [100, 0, 0]
+
+[preview]
+enabled = false

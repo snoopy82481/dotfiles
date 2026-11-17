@@ -1,0 +1,56 @@
+LogLevel ERROR
+
+Host *
+  AddKeysToAgent yes
+  PasswordAuthentication no
+  ConnectTimeout 20
+  IdentityFile ~/.ssh/gh_ssh_key
+  IdentityFile ~/.ssh/id_ed25519
+{%- if os() == "macos" %}
+  IgnoreUnknown UseKeychain
+  UseKeychain yes
+{%- endif %}
+
+Host proxmox
+  HostName 192.168.0.3
+  User snoopy82481
+
+Host truenas
+  HostName 192.168.20.14
+  User root
+  IdentityFile ~/.ssh/id_ed25519
+
+Host cisco_switch
+  HostName 192.168.10.254
+  User snoopy82481
+  IdentitiesOnly yes
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_rsa
+
+  KexAlgorithms +diffie-hellman-group14-sha1
+  HostKeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+
+Host pfsense
+  HostName 192.168.0.1
+  IdentityFile ~/.ssh/id_ed25519
+  User snoopy82481
+
+Host minniverse
+  HostName 192.168.0.143
+  IdentityFile ~/.ssh/id_ed25519_minniverse
+  User stephen
+
+Host 192.168.20.100
+  HostName 192.168.20.100
+  GSSAPIAuthentication yes
+
+Host 192.168.*.*
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+Host 172.16.*.*
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+Host 10.*.*.*
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null

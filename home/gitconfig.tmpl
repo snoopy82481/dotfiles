@@ -1,0 +1,42 @@
+[user]
+  name = {{ vars.git_name }}
+  email = {{ vars.git_email }}
+  signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAH4nidcyPnUfRDT6cytDno70HJwmfYraiEJNyL1HhJS
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  {#- Public keys only; every machine's signing key must be listed or `git log
+      --show-signature` reports "No principal matched" for commits it made. #}
+  allowedSignersFile = {{ env.HOME }}/.ssh/allowed_signers
+[format]
+  signOff = true
+[core]
+  autocrlf = input
+  editor = nvim
+  excludesfile = {{ env.HOME }}/.gitignore_global
+[commit]
+  gpgsign = true
+[merge]
+  ff = only
+[pull]
+  rebase = true
+[rebase]
+  autoStash = true
+[fetch]
+  prune = true
+[status]
+  submoduleSummary = false
+[tag]
+  forceSignAnnotated = true
+  gpgSign = true
+[init]
+  defaultBranch = main
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[url "ssh://git@github.com/"]
+  pushInsteadOf = https://github.com/
+[push]
+  autoSetupRemote = true
