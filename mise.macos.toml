@@ -3,9 +3,9 @@ machine = "macos"
 
 [dotfiles]
 "~/.config/mise/mise.macos.toml" = { source = "~/.dotfiles/mise.macos.toml", mode = "symlink" }
-"~/.config/ghostty" = { source = "~/.dotfiles/home/macos/ghostty", mode = "symlink-each" }
-"~/.config/k9s" = { source = "~/.dotfiles/home/macos/k9s", mode = "symlink-each" }
-"~/.config/fish" = { source = "~/.dotfiles/home/macos/fish", mode = "symlink-each" }
+"~/.config/ghostty" = { source = "~/.dotfiles/home/config/ghostty", mode = "symlink-each" }
+"~/.config/k9s" = { source = "~/.dotfiles/home/config/k9s", mode = "symlink-each" }
+"~/.config/fish" = { source = "~/.dotfiles/home/config/fish", mode = "symlink-each" }
 "~/.config/homebrew" = { source = "~/.dotfiles/home/macos/homebrew", mode = "symlink" }
 "~/.config/fish/conf.d/10-homebrew.fish" = { source = "~/.dotfiles/home/macos/10-homebrew.fish", mode = "symlink" }
 

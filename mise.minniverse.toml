@@ -3,11 +3,12 @@ machine = "minniverse"
 
 [dotfiles]
 "~/.config/mise/mise.minniverse.toml" = { source = "~/.dotfiles/mise.minniverse.toml", mode = "symlink" }
+"~/.config/fish" = { source = "~/.dotfiles/home/config/fish", mode = "symlink-each" }
 "~/.config/homebrew" = { source = "~/.dotfiles/home/minniverse/homebrew", mode = "symlink" }
 "~/.config/fish/conf.d/10-homebrew.fish" = { source = "~/.dotfiles/home/minniverse/10-homebrew.fish", mode = "symlink" }
 
 [bootstrap.hooks.post-dotfiles]
-run = '''''
+run = '''
 set -eu
 BREW="$(command -v brew || true)"
 for candidate in /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
@@ -20,4 +21,4 @@ if [ -z "$BREW" ]; then
 fi
 eval "$("$BREW" shellenv sh)"
 brew bundle install --no-upgrade --file="$HOME/.config/homebrew/Brewfile"
-'''''
+'''
