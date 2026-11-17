@@ -1,7 +1,5 @@
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "homebrew/bundle"
-tap "homebrew/services"
 # GNU file, shell, and text utilities.
 brew "coreutils"
 # GNU tools for comparing files and directories.
