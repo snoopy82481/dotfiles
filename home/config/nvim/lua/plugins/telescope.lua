@@ -1,7 +1,6 @@
 -- Fuzzy Finder (files, lsp, etc)
 return {
   'nvim-telescope/telescope.nvim',
-  branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -20,12 +19,16 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    local telescope = require 'telescope'
     local actions = require 'telescope.actions'
     local builtin = require 'telescope.builtin'
 
     require('telescope').setup {
       defaults = {
+      path_display = {
+        filename_first = {
+          reverse_directories = true,
+        },
+      },
         mappings = {
           i = {
             ['<C-k>'] = actions.move_selection_previous, -- move to prev result
@@ -38,6 +41,13 @@ return {
         },
       },
       pickers = {
+      live_grep = {
+        file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+        additional_args = function(_)
+          return { '--hidden' }
+        end,
+      },
+        git_files = { previewer = false },
         find_files = {
           file_ignore_patterns = { 'node_modules', '.git', '.venv' },
           hidden = true,
@@ -54,24 +64,10 @@ return {
           },
         },
       },
-      live_grep = {
-        file_ignore_patterns = { 'node_modules', '.git', '.venv' },
-        additional_args = function(_)
-          return { '--hidden' }
-        end,
-      },
-      path_display = {
-        filename_first = {
-          reverse_directories = true,
-        },
-      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
         },
-      },
-      git_files = {
-        previewer = false,
       },
     }
 

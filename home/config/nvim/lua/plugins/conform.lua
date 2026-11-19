@@ -20,9 +20,8 @@ return {
       lua = { "stylua" },
       -- Conform will run multiple formatters sequentially
       python = { "isort", "black" },
-      -- Use a sub-list to run only the first available formatter
-      javascript = { { "prettierd", "prettier" } },
-      markdown = { { "prettierd", "prettier" } },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+      markdown = { "prettierd", "prettier", stop_after_first = true },
       typescript = { "eslint_d" },
       sh = { "shfmt" },
       bash = { "shfmt" },
@@ -31,8 +30,7 @@ return {
       timeout_ms = 500,
     },
     default_format_opts = {
-      async = true,
-      lsp_fallback = false,
+      lsp_format = "never",
     },
   },
   init = function()

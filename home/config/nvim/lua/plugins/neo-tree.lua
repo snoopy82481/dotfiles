@@ -1,7 +1,12 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  event = 'VeryLazy',
+  lazy = false,
   branch = 'v3.x',
+  keys = {
+    { '<leader>w', ':Neotree toggle float<CR>', silent = true, desc = 'Float File Explorer' },
+    { '<leader>e', ':Neotree toggle position=left<CR>', silent = true, desc = 'Left File Explorer' },
+    { '<leader>ngs', ':Neotree float git_status<CR>', silent = true, desc = 'Neotree Open Git Status Window' },
+  },
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
@@ -25,11 +30,7 @@ return {
           },
         }
       end,
-      keys = {
-        { '<leader>w', ':Neotree toggle float<CR>', silent = true, desc = 'Float File Explorer' },
-        { '<leader>e', ':Neotree toggle position=left<CR>', silent = true, desc = 'Left File Explorer' },
-        { '<leader>ngs', ':Neotree float git_status<CR>', silent = true, desc = 'Neotree Open Git Status Window' },
-      },
+
     },
   },
   config = function()

@@ -38,6 +38,8 @@ brew "jq"
 brew "yq"
 # Extensible terminal text editor.
 brew "neovim"
+# Generate and compile Tree-sitter parsers for Neovim.
+brew "tree-sitter-cli"
 # Search file contents recursively.
 brew "ripgrep"
 # Efficiently copy and synchronize files.

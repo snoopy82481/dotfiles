@@ -7,6 +7,7 @@ return {
   {
     -- autoclose tags
     'windwp/nvim-ts-autotag',
+    opts = {},
   },
   {
     -- detect tabstop and shiftwidth automatically
@@ -54,9 +55,7 @@ return {
   },
   {
     -- high-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    'catgoose/nvim-colorizer.lua',
+    opts = {},
   },
 }

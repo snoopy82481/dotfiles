@@ -20,7 +20,6 @@ return {
         buffer_close_icon = '✗',
         -- buffer_close_icon = '✕',
         close_icon = '',
-        path_components = 1, -- Show only the file name without the directory
         modified_icon = '●',
         left_trunc_marker = '',
         right_trunc_marker = '',
@@ -42,10 +41,6 @@ return {
           -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
           style = 'none', -- Options: 'icon', 'underline', 'none'
         },
-        icon_pinned = '󰐃',
-        minimum_padding = 1,
-        maximum_padding = 5,
-        maximum_length = 15,
         sort_by = 'insert_at_end',
       },
       highlights = {

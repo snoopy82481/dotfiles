@@ -1,7 +1,5 @@
 return {
   'stevearc/aerial.nvim',
-  lazy_load = true,
-  opts = {},
   -- Optional dependencies
   dependencies = {
     'nvim-treesitter/nvim-treesitter',

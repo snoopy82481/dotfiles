@@ -6,7 +6,7 @@ tap "felixkratz/formulae", trusted: true
 tap "fluxcd/tap", trusted: true
 tap "go-task/tap", trusted: true
 tap "hashicorp/tap", trusted: true
-tap "home-operations/tap"
+tap "home-operations/tap", trusted: true
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "microck/kagi", "https://github.com/Microck/homebrew-kagi", trusted: true

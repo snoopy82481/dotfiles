@@ -2,7 +2,7 @@
 
 -- Prevent LSP from overwriting treesitter color settings
 -- https://github.com/NvChad/NvChad/issues/1907
-vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+vim.hl.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
 -- Appearance of diagnostics
 vim.diagnostic.config {
@@ -19,23 +19,20 @@ vim.diagnostic.config {
   float = {
     source = 'always', -- Or "if_many"
   },
-  -- Make diagnostic background transparent
-  on_ready = function()
-    vim.cmd 'highlight DiagnosticVirtualText guibg=NONE'
-  end,
 }
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
   group = highlight_group,
   pattern = '*',
 })
 
 -- Set kitty terminal padding to 0 when in nvim
+if vim.env.KITTY_WINDOW_ID and vim.fn.executable 'kitty' == 1 then
 vim.cmd [[
   augroup kitty_mp
   autocmd!
@@ -43,3 +40,18 @@ vim.cmd [[
   au VimEnter * :silent !kitty @ set-spacing padding=0 margin=0 3 0 3
   augroup END
 ]]
+end
+
+local function diagnostic_backgrounds()
+  for _, severity in ipairs { 'Error', 'Warn', 'Info', 'Hint' } do
+    local name = 'DiagnosticVirtualText' .. severity
+    local highlight = vim.api.nvim_get_hl(0, { name = name, link = false })
+    highlight.bg = nil
+    vim.api.nvim_set_hl(0, name, highlight)
+  end
+end
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = vim.api.nvim_create_augroup('DiagnosticBackgrounds', { clear = true }),
+  callback = diagnostic_backgrounds,
+})
+diagnostic_backgrounds()

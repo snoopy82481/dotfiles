@@ -2,15 +2,14 @@ return { -- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for neovim
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{
 			"j-hui/fidget.nvim",
-			tag = "v1.4.0",
 			opts = {
 				progress = {
 					display = {
@@ -88,6 +87,16 @@ return { -- LSP Configuration & Plugins
 				--
 				-- When you move your cursor, the highlights will be cleared (the second autocommand).
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
+				if client and client.name == "ruff" then
+					for name, command in pairs {
+						RuffAutofix = "ruff.applyAutofix",
+						RuffOrganizeImports = "ruff.applyOrganizeImports",
+					} do
+						vim.api.nvim_buf_create_user_command(event.buf, name, function()
+							client:exec_cmd({ command = command, arguments = { { uri = vim.uri_from_bufnr(event.buf) } } }, { bufnr = event.buf })
+						end, {})
+					end
+				end
 				if client and client.server_capabilities.documentHighlightProvider then
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
@@ -153,42 +162,13 @@ return { -- LSP Configuration & Plugins
 					},
 				},
 			},
-			ruff = {
-				-- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
-				-- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
-				commands = {
-					RuffAutofix = {
-						function()
-							vim.lsp.buf.execute_command({
-								command = "ruff.applyAutofix",
-								arguments = {
-									{ uri = vim.uri_from_bufnr(0) },
-								},
-							})
-						end,
-						description = "Ruff: Fix all auto-fixable problems",
-					},
-					RuffOrganizeImports = {
-						function()
-							vim.lsp.buf.execute_command({
-								command = "ruff.applyOrganizeImports",
-								arguments = {
-									{ uri = vim.uri_from_bufnr(0) },
-								},
-							})
-						end,
-						description = "Ruff: Format imports",
-					},
-				},
-			},
+			ruff = {},
 			rust_analyzer = {
-				["rust-analyzer"] = {
-					cargo = {
-						features = "all",
-					},
-					checkOnSave = true,
-					check = {
-						command = "clippy",
+				settings = {
+					["rust-analyzer"] = {
+						cargo = { features = "all" },
+						checkOnSave = true,
+						check = { command = "clippy" },
 					},
 				},
 			},
@@ -209,6 +189,7 @@ return { -- LSP Configuration & Plugins
 
 		require("mason-lspconfig").setup({
 			ensure_installed = vim.tbl_keys(servers),
+			automatic_enable = false,
 		})
 
 		-- Install non-LSP CLI tools (formatters, linters, etc.)
@@ -219,6 +200,7 @@ return { -- LSP Configuration & Plugins
 				"black",
 				"isort",
 				"prettierd",
+				"eslint_d",
 			},
 		})
 
@@ -230,8 +212,5 @@ return { -- LSP Configuration & Plugins
 		-- Enable only the servers you defined above
 		vim.lsp.enable(vim.tbl_keys(servers))
 
-		-- Kill any legacy/injected stylua "LSP server"
-		vim.lsp.config("stylua", { enabled = false })
-		pcall(vim.lsp.enable, "stylua", false) -- safe if signature differs
 	end,
 }
