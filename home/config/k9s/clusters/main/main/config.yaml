@@ -1,9 +1,10 @@
 k9s:
   cluster: main
   namespace:
-    active: all
+    active: networking
     lockFavorites: false
     favorites:
+      - default
       - all
       - networking
       - kube-system
@@ -12,9 +13,8 @@ k9s:
       - media
       - downloads
       - monitoring
-      - web-tools
   view:
-    active: v1/pods
+    active: v1/pods networking
   featureGates:
     nodeShell: false
   proxy: null

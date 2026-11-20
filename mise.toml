@@ -44,6 +44,9 @@ git_email = "stephen.r.beale@gmail.com"
 # so hosts don't carry (and warn about) the other machines' overlays.
 "~/.config/mise/config.toml" = { source = "~/.dotfiles/mise.toml", mode = "symlink" }
 
+[bootstrap.repos]
+"~/.nano" = { url = "https://github.com/scopatz/nanorc.git" }
+
 # Bootstraps fisher and syncs the managed plugin list. Runs after [tools], so
 # fish already exists (brew on macos, mise on truenas). No fish means no
 # plugins to manage (termux), so skip.
