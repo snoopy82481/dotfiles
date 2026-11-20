@@ -4,16 +4,16 @@ Host *
   AddKeysToAgent yes
   PasswordAuthentication no
   ConnectTimeout 20
-{% if mise_env is defined and "personal" in mise_env %}
+{%- if mise_env is defined and "personal" in mise_env %}
   IdentityFile ~/.ssh/gh_ssh_key
   IdentityFile ~/.ssh/id_ed25519
-{% endif %}
+{%- endif %}
 {%- if os() == "macos" %}
   IgnoreUnknown UseKeychain
   UseKeychain yes
 {%- endif %}
 
-{% if mise_env is defined and "personal" in mise_env %}
+{%- if mise_env is defined and "personal" in mise_env %}
 Host proxmox
   HostName 192.168.0.3
   User snoopy82481
@@ -43,7 +43,7 @@ Host minniverse
   HostName 192.168.0.143
   IdentityFile ~/.ssh/id_ed25519_minniverse
   User stephen
-{% endif %}
+{%- endif %}
 
 Host 192.168.*.*
   StrictHostKeyChecking no

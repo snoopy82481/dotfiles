@@ -8,7 +8,7 @@ machine = "minniverse"
 "~/.config/fish/conf.d/10-homebrew.fish" = { source = "~/.dotfiles/home/minniverse/10-homebrew.fish", mode = "symlink" }
 
 [tools]
-node = "24"
+node = "26"
 
 [bootstrap.hooks.post-dotfiles]
 run = '''

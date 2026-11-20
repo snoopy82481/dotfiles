@@ -1,0 +1,17 @@
+{
+  "trustedtaps": [
+    "dopplerhq/doppler",
+    "felixkratz/formulae",
+    "fluxcd/tap",
+    "go-task/tap",
+    "hashicorp/tap",
+    "home-operations/tap",
+    "microck/kagi",
+    "nikitabobko/tap",
+    "siderolabs/tap"
+  ],
+  "trustedcasks": [
+    "home-operations/tap/flate",
+    "home-operations/tap/yayamlls"
+  ]
+}
